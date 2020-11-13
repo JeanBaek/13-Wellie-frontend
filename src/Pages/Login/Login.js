@@ -234,7 +234,7 @@ const BackgroundImg = styled.li`
 const LoginContents = styled.div`
   display: flex;
   flex-direction: column;
-  justify=content: flex=end;
+  justify-content: flex-end;
   align-items: center;
   width: 280px;
   height: 100vh;

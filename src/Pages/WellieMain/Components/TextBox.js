@@ -1,19 +1,19 @@
 import styled from "styled-components";
 
-export default function TextBox(props) {
+export default function TextBox({ bigStr, smallStr }) {
   return (
     <TitleBox data-aos="fade-down">
       <Title>
-        <p>{props.bigStr && props.bigStr[0]}</p>
-        <p>{props.bigStr && props.bigStr[1]}</p>
-        <p>{props.bigStr && props.bigStr[2]}</p>
-        <p>{props.bigStr && props.bigStr[3]}</p>
+        <p>{bigStr && bigStr[0]}</p>
+        <p>{bigStr && bigStr[1]}</p>
+        <p>{bigStr && bigStr[2]}</p>
+        <p>{bigStr && bigStr[3]}</p>
       </Title>
       <SubTitle>
-        <p>{props.smallStr && props.smallStr[0]}</p>
-        <span>{props.smallStr && props.smallStr[1]}</span>
-        <span>{props.smallStr && props.smallStr[2]}</span>
-        <p>{props.smallStr && props.smallStr[3]}</p>
+        <p>{smallStr && smallStr[0]}</p>
+        <span>{smallStr && smallStr[1]}</span>
+        <span>{smallStr && smallStr[2]}</span>
+        <p>{smallStr && smallStr[3]}</p>
       </SubTitle>
     </TitleBox>
   );

@@ -2,7 +2,11 @@ import { useState } from "react";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { setType, setSearchValue } from "../../../store/actions/index";
+import {
+  setType,
+  setOffset,
+  setSearchValue,
+} from "../../../store/actions/index";
 import { FaSearch } from "react-icons/fa";
 import { IoIosCloseCircle } from "react-icons/io";
 
@@ -18,21 +22,24 @@ export default function InnerInput(props) {
   const dispatch = useDispatch();
   const type = useSelector((store) => store.searchReducer.type);
   const sort = useSelector((store) => store.searchReducer.sort);
+  const offset = useSelector((store) => store.searchReducer.offset);
   const [inputValue, setInputValue] = useState("");
 
-  function changeType(e) {
-    console.log("changeType", e.target.value);
+  const changeType = (e) => {
     dispatch(setType(e.target.value));
-  }
+    dispatch(setOffset(0));
+  };
 
-  function updateInputValue(e) {
+  const updateInputValue = (e) => {
     setInputValue(e.target.value);
-  }
+  };
 
   const onSubmitHandler = async (e) => {
     await e.preventDefault();
     dispatch(setSearchValue(inputValue));
-    history.push(`/search_result/${inputValue}?type=${type}&sort=${sort}`);
+    history.push(
+      `/search_result/${inputValue}?type=${type}&sort=${sort}&offset=${offset}&limit=${14}`
+    );
   };
 
   function deleteInputValue(e) {
