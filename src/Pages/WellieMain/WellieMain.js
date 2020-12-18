@@ -1,44 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { useHistory, useLocation } from "react-router";
+import { useEffect } from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
-import TextBox from "./Components/TextBox";
-import PriceCard from "./Components/PriceCard";
 import AOS from "aos";
-import { BEAPIROOT, LOCALHOST } from "../../config";
 import "aos/dist/aos.css";
-import { FaHeadphones } from "react-icons/fa";
-import { FaMobileAlt } from "react-icons/fa";
+import { FaHeadphones, FaMobileAlt } from "react-icons/fa";
+import TextBox from "./TextBox";
+import PriceCard from "./PriceCard";
 
-const WellieMain = () => {
+const WellieMain = ({ leftStrings, covers, priceCardString }) => {
   const history = useHistory();
-  const [leftStrings, setLeftStrings] = useState([]);
-  const [covers, setCovers] = useState([]);
-  const [priceCardString, setPriceCardString] = useState([]);
-
-  useEffect(() => {
-    fetch(`${BEAPIROOT}/book?limit=55`)
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res.MESSAGE);
-        setCovers(res.MESSAGE);
-      })
-      .catch((err) => console.log("Catched errors!!", err));
-  }, []);
-
-  useEffect(() => {
-    fetch(`${LOCALHOST}/data/dataOfMain.json`)
-      .then((res) => res.json())
-      .then(
-        (res) => {
-          console.log("res", res);
-          setLeftStrings(res.LEFTSTRINGS);
-          setPriceCardString(res.PRICECARDSTRINGS);
-        },
-        () => {
-          console.log("에러!!!");
-        }
-      );
-  }, []);
 
   useEffect(() => {
     AOS.init({
@@ -399,7 +369,6 @@ const WellieMain = () => {
     </Main>
   );
 };
-
 export default WellieMain;
 
 const Main = styled.div`

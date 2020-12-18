@@ -28,7 +28,7 @@ export const setSearchValue = (searchValue) => ({
   payload: searchValue,
 });
 
-export const setPageBool = (categories) => ({
+export const setCategories = (categories) => ({
   type: "SET_CATEGORIES",
   payload: categories,
 });

@@ -1,10 +1,6 @@
-import React, { useEffect } from "react";
-import { useHistory } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { setBooks, setSort, setOffset } from "../../store/actions/index";
-import { BEAPIROOT } from "../../config";
-import InnerInput from "./Components/InnerInput";
+import InnerInput from "./InnerInput";
 import { FaList } from "react-icons/fa";
 
 const SORTS = [
@@ -14,36 +10,8 @@ const SORTS = [
   { value: "published", sort: "발간일 순" },
 ];
 
-export default function SearchResult(props) {
-  const history = useHistory();
-  const dispatch = useDispatch();
-  const searchValue = useSelector((store) => store.searchReducer.searchValue);
-  const type = useSelector((store) => store.searchReducer.type);
-  const sort = useSelector((store) => store.searchReducer.sort);
-  const offset = useSelector((store) => store.searchReducer.offset);
+const SearchResult = ({ goToBookDetail, changeSort }) => {
   const books = useSelector((store) => store.searchReducer.books);
-
-  useEffect(() => {
-    fetch(`${BEAPIROOT}/book/search/${searchValue}?type=${type}&sort=${sort}`)
-      .then((res) => res.json())
-      .then((res) => {
-        if (typeof res.MESSAGE == "object") {
-          dispatch(setBooks(res.MESSAGE));
-        } else {
-          dispatch(setBooks(null));
-        }
-      })
-      .catch((err) => console.log("Catched errors!! >>>", err));
-  }, [searchValue, type, sort]);
-
-  const goToBookDetail = (id) => {
-    history.push(`/book_details/${id}`);
-  };
-
-  const changeSort = (e) => {
-    dispatch(setSort(e.target.value));
-    dispatch(setOffset(0));
-  };
 
   return (
     <SearchResultPage>
@@ -112,7 +80,9 @@ export default function SearchResult(props) {
       </ContentBody>
     </SearchResultPage>
   );
-}
+};
+
+export default SearchResult;
 
 const SearchResultPage = styled.div`
   position: relative;
