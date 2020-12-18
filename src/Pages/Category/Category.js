@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useLocation } from "react-router-dom";
-import Slider from "react-slick";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { BEAPIROOT } from "../../config";
 import { FaArrowLeft } from "react-icons/fa";
@@ -19,7 +18,7 @@ export default function Category(props) {
     fetch(`${BEAPIROOT}/book/category/${props.match.params.id}`)
       .then((res) => res.json())
       .then((res) => setSubcategories(res.subcategories));
-  }, []);
+  }, [props.match.params.id]);
 
   return (
     <CategoryPage>
