@@ -4,7 +4,7 @@
 
 실무수준의 프로젝트이며, 학습 목적으로 제작하였습니다.
 
-\*Wecode Bootcamp에서 본인이 참여한 팀 프로젝트의 코드를 가져와, self-refactoring 한 레파지토리입니다.
+(Wecode Bootcamp에서 본인이 참여한 팀 프로젝트의 코드를 forked하여, self-refactoring 한 레파지토리입니다.)
 
 ## 본인이 구현한 페이지 (혹은 컴포넌트)
 
