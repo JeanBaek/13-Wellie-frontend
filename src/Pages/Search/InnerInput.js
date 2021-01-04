@@ -2,11 +2,7 @@ import { useState } from "react";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import {
-  setType,
-  setOffset,
-  setSearchValue,
-} from "../../../store/actions/index";
+import { setType, setOffset, setSearchValue } from "../../store/actions/index";
 import { FaSearch } from "react-icons/fa";
 import { IoIosCloseCircle } from "react-icons/io";
 

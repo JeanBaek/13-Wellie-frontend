@@ -12,7 +12,6 @@ const optionalCategory = {
 export default function Category(props) {
   const history = useHistory();
   const [subcategories, setSubcategories] = useState([]);
-  console.log("subcategories", subcategories);
 
   useEffect(() => {
     fetch(`${BEAPIROOT}/book/category/${props.match.params.id}`)

@@ -1,11 +1,8 @@
 import styled from "styled-components";
-import AOS from "aos";
 import "aos/dist/aos.css";
 import { FaCheck } from "react-icons/fa";
 
 export default function PriceCard(props) {
-  console.log("PriceCard props >>>", props);
-
   return (
     <EachPriceCard data-aos="zoom-in">
       <CardHeader color={props.color} backgroundColor={props.backgroundColor}>

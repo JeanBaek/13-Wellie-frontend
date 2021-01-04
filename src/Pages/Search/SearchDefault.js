@@ -1,32 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { setSearchValue } from "../../store/actions/index";
-import { BEAPIROOT } from "../../config";
-import InnerInput from "./Components/InnerInput";
+import InnerInput from "./InnerInput";
 import { FaSearch } from "react-icons/fa";
 
-export default function SearchDefault(props) {
-  const history = useHistory();
-  const dispatch = useDispatch();
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    fetch(`${BEAPIROOT}/book/category`)
-      .then((res) => res.json())
-      .then((res) => {
-        dispatch(setCategories(res.categories));
-      })
-      .catch((err) => console.log("Catched errors >>> ", err));
-  }, []);
-
-  function goToSubCatePage(id, name) {
-    history.push({
-      pathname: `/category/${id}`,
-      name: name,
-    });
-  }
+const SearchDefault = ({ goToSubCatePage, goToSearchResult }) => {
+  const categories = useSelector((store) => store.searchReducer.categories);
 
   return (
     <SearchDefaultPage>
@@ -40,48 +18,28 @@ export default function SearchDefault(props) {
             <ul>
               <li>
                 <FaSearch className="searchIcon" />
-                <span
-                  onClick={() => {
-                    dispatch(setSearchValue("최준"));
-                    history.push(`/search_result/최준?type=all&sort=keyword`);
-                  }}
-                >
+                <span onClick={() => goToSearchResult("최준")}>
                   지금 주목 받는
                   <strong> 최 준 작가</strong>
                 </span>
               </li>
               <li>
                 <FaSearch className="searchIcon" />
-                <span
-                  onClick={() => {
-                    dispatch(setSearchValue("개발"));
-                    history.push(`/search_result/개발?type=all&sort=keyword`);
-                  }}
-                >
+                <span onClick={() => goToSearchResult("개발")}>
                   세상을 움직이는
                   <strong> 개발자의 철학</strong>
                 </span>
               </li>
               <li>
                 <FaSearch className="searchIcon" />
-                <span
-                  onClick={() => {
-                    dispatch(setSearchValue("뽀로로"));
-                    history.push(`/search_result/뽀로로?type=all&sort=keyword`);
-                  }}
-                >
+                <span onClick={() => goToSearchResult("뽀로로")}>
                   노는 게 제일 좋아,
                   <strong> 뽀로로 시리즈</strong>
                 </span>
               </li>
               <li>
                 <FaSearch className="searchIcon" />
-                <span
-                  onClick={() => {
-                    dispatch(setSearchValue("심리학"));
-                    history.push(`/search_result/심리학?type=all&sort=keyword`);
-                  }}
-                >
+                <span onClick={() => goToSearchResult("심리학")}>
                   어떻게 하면 소통을 잘할 수 있을까,
                   <strong> 심리학 모음전</strong>
                 </span>
@@ -114,7 +72,9 @@ export default function SearchDefault(props) {
       </div>
     </SearchDefaultPage>
   );
-}
+};
+
+export default SearchDefault;
 
 const SearchDefaultPage = styled.section`
   width: 1280px;

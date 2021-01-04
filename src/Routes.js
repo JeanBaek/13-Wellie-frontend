@@ -4,7 +4,6 @@ import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./Styles/GlobalStyle";
 import { theme } from "./Styles/Theme";
 import Nav from "./Components/Nav/Nav";
-import WellieMain from "./Pages/WellieMain/WellieMain";
 import Login from "./Pages/Login/Login";
 import Signup from "./Pages/Signup/Signup";
 import PhoneValidate from "./Pages/Signup/components/PhoneValidate";
@@ -15,8 +14,11 @@ import Category from "./Pages/Category/Category";
 import MyBooks from "./Pages/MyBooks/MyBooks";
 import MyBooksManager from "./Pages/MyBooksManager/MyBooksManager";
 import BookDetails from "./Pages/BookDetails/BookDetails";
-import SearchDefault from "./Pages/Search/SearchDefault";
-import SearchResult from "./Pages/Search/SearchResult";
+import {
+  WellieMainContainer,
+  SearchDefaultContainer,
+  SearchResultContainer,
+} from "Container";
 
 class Routes extends React.Component {
   render() {
@@ -27,7 +29,7 @@ class Routes extends React.Component {
           <Router>
             <Nav />
             <Switch>
-              <Route exact path="/" component={WellieMain} />
+              <Route exact path="/" component={WellieMainContainer} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/phone_validate" component={PhoneValidate} />
@@ -42,8 +44,8 @@ class Routes extends React.Component {
               />
               <Route exact path="/book_details/:id" component={BookDetails} />
               <Route path="/category/:id" component={Category} />
-              <Route path="/home" component={SearchDefault} />
-              <Route path="/search_result" component={SearchResult} />
+              <Route path="/home" component={SearchDefaultContainer} />
+              <Route path="/search_result" component={SearchResultContainer} />
             </Switch>
           </Router>
         </ThemeProvider>
